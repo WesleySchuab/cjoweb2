@@ -3,8 +3,52 @@ session_start();
 // Incluir o arquivo de conexão com o banco de dados
 include '../../central/fn/server.php';
 
+if (isset($_GET['filtro']))
+ {
+    $filtros = $_GET['filtro'];
+
+    switch ($filtros) 
+     {
+        case 'id'   : $sql = "SELECT * FROM clientes"; break;
+        case 'az'   : $sql = "SELECT * FROM clientes ORDER BY nome_completo"; break;
+        case 'za'   : $sql = "SELECT * FROM clientes ORDER BY nome_completo DESC"; break;
+        case 'idade': $sql = "SELECT * FROM clientes ORDER BY dt_nasc"; break;
+     }   
+ }
+  else
+   {
+     $sql = "SELECT * FROM clientes";
+   }
+
+switch ($filtros) 
+{
+   case 'id'   : $sql = "SELECT * FROM clientes"; break;
+   case 'az'   : $sql = "SELECT * FROM clientes ORDER BY nome_completo"; break;
+   case 'za'   : $sql = "SELECT * FROM clientes ORDER BY nome_completo DESC"; break;
+   case 'idade': $sql = "SELECT * FROM clientes ORDER BY dt_nasc"; break;
+}   
+/*
+filtrar por:
+Id
+AZ
+ZA
+Idade
+*/
+$filtro =  $_GET['filtro'];
+
+switch ($filtro) {
+    case 'id'; 
+        $sql = "SELECT * FROM clientes"; break;
+    case 'az'; 
+        $sql = "SELECT * FROM clientes ORDER BY nome_completo";break;
+    case 'za';
+         $sql = "SELECT * FROM clientes ORDER BY nome_completo DESC";break;
+    case 'idade';
+        $sql = "SELECT * FROM clientes ORDER BY dt_nasc";break;
+}
+
 // Criar a consulta SQL para selecionar todos os clientes
-$sql = "SELECT * FROM clientes";
+//$sql = "SELECT * FROM clientes";
 $result = mysqli_query($conexao, $sql);
 ?>
 
@@ -28,6 +72,7 @@ $result = mysqli_query($conexao, $sql);
                     <th>Nome Completo</th>
                     <th>Sexo</th>
                     <th>Data de Nascimento</th>
+                    <th>Idade</th>
                     <th>Email</th>
                     <th>Telefone</th>
                     <th>Ação</th>
@@ -39,12 +84,21 @@ $result = mysqli_query($conexao, $sql);
                 if (mysqli_num_rows($result) > 0) {
                     // Loop através de cada linha de resultado e exibi-la na tabela
                     while($row = mysqli_fetch_assoc($result)) {
+                        //Converte a data em um inteiro
+                        $data_nasc = date( "d/m/y", strtotime($row['dt_nasc']) );
+                        
+                        $data_nascimento = new DateTime($row['dt_nasc']);
+
+                        $hoje = new DateTime();
+                        //diff($data_nascimento)-> y; cria nova variavel que pega so o ano
+                        $idade = $hoje -> diff($data_nascimento)-> y;
                         echo "<tr>";
                         echo "<td>" . $row['id'] . "</td>";
                         echo "<td>" . $row['codigo'] . "</td>";
                         echo "<td>" . $row['nome_completo'] . "</td>";
                         echo "<td>" . $row['sexo'] . "</td>";
                         echo "<td>" . $row['dt_nasc'] . "</td>";
+                        echo "<td>" . $idade. "</td>";
                         echo "<td>" . $row['email'] . "</td>";
                         echo "<td>" . $row['telefone'] . "</td>";
                         echo "<td>
