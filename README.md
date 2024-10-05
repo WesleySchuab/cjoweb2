@@ -34,3 +34,10 @@ switch ($filtro) {
         $sql = "SELECT * FROM clientes ORDER BY dt_nasc";break;
 }
 passando a url com i filtro nesse formato agora o filtro deve funcionar
+
+# Anotações sobre a prova no ultimo exercicio Pg x de y deve mostrar quantas páginas foram geradas após a execução anterior
+por exemplo :
+http://localhost:8000/cjoweb2/Sistema/clientes/Nome_sobrenome_exe02.php?listar=10
+ao listar 10 clientes em total de 50 deve haver mais 5 paginas com 10 clientes cada caso esteja na primeira pagina a coluna do meio 
+[ Pg x de y ] deve mostra 1 de 5.
+as setas >> deve ir para a próxima pagina e exibir os proximas 10 clientes ou seja os clientes de 11 a 21.
