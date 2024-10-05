@@ -2,7 +2,7 @@
 session_start();
 include '../../central/fn/server.php';
 
-$nome_arquivo = "index.php";
+$nome_arquivo = "nome_sobrenome_exe02.php"; // Alterado para o nome correto
 
 $limite = isset($_GET['listar']) && is_numeric($_GET['listar']) ? (int)$_GET['listar'] : 10;
 $pagina_atual = isset($_GET['pg']) && is_numeric($_GET['pg']) ? (int)$_GET['pg'] : 1;
@@ -16,7 +16,6 @@ $row_total = mysqli_fetch_assoc($result_total);
 $total_clientes = $row_total['total'];
 
 $total_paginas = ceil($total_clientes / $limite);
-
 ?>
 
 <!DOCTYPE html>
@@ -92,7 +91,10 @@ $total_paginas = ceil($total_clientes / $limite);
     </table>
     <table>
         <tr>
-            <th><a href="<?php echo $nome_arquivo; ?>?listar=<?php echo $limite; ?>&pg=<?php echo max(1, $pagina_atual - 1); ?>"><<</a></th>
+            <th>
+                <a href="<?php echo $nome_arquivo; ?>?listar=<?php echo $limite;
+                ?>&pg=<?php echo max(1, $pagina_atual - 1); ?>"><<</a>
+             </th>
             <th>Pg <?php echo $pagina_atual; ?> de <?php echo $total_paginas; ?></th>
             <th><a href="<?php echo $nome_arquivo; ?>?listar=<?php echo $limite;
              ?>&pg=<?php echo min($total_paginas, $pagina_atual + 1); ?>">>></a></th>
