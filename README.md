@@ -41,3 +41,17 @@ http://localhost:8000/cjoweb2/Sistema/clientes/Nome_sobrenome_exe02.php?listar=1
 ao listar 10 clientes em total de 50 deve haver mais 5 paginas com 10 clientes cada caso esteja na primeira pagina a coluna do meio 
 [ Pg x de y ] deve mostra 1 de 5.
 as setas >> deve ir para a próxima pagina e exibir os proximas 10 clientes ou seja os clientes de 11 a 21.
+
+## Instruções para execução
+primeiro deve fazer o login em seguida acessar o primeiro link abaixo passando como parametro um valor como é mostrado no exemplo onde usamos o 10
+### link para o primeiro arquivo
+http://localhost:8000/cjoweb2/Sistema/clientes/Nome_sobrenome_exe01.php?listar=10
+
+### como deve ficar
+http://localhost:8000/cjoweb2/Sistema/clientes/wesley_schuab_exe01.php?listar=10
+
+link para o segundo arquivo
+http://localhost:8000/cjoweb2/sistema/clientes/nome_sobrenome_exe02.php
+
+como deve ficar
+http://localhost:8000/cjoweb2/sistema/clientes/wesley_schuab_exe02.php
