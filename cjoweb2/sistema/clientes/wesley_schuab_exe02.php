@@ -4,18 +4,18 @@ include '../../central/fn/server.php';
 
 $nome_arquivo = "nome_sobrenome_exe02.php"; // Alterado para o nome correto
 
-$limite = isset($_GET['listar']) && is_numeric($_GET['listar']) ? (int)$_GET['listar'] : 10;
+$lt = isset($_GET['listar']) && is_numeric($_GET['listar']) ? (int)$_GET['listar'] : 10;
 $pagina_atual = isset($_GET['pg']) && is_numeric($_GET['pg']) ? (int)$_GET['pg'] : 1;
-$offset = ($pagina_atual - 1) * $limite;
+$offset = ($pagina_atual - 1) * $lt;
 
-$sql = "SELECT * FROM clientes LIMIT $offset, $limite";
+$sql = "SELECT * FROM clientes LIMIT $offset, $lt";
 $result = mysqli_query($conexao, $sql);
 $sql_total = "SELECT COUNT(*) as total FROM clientes";
 $result_total = mysqli_query($conexao, $sql_total);
 $row_total = mysqli_fetch_assoc($result_total);
 $total_clientes = $row_total['total'];
 
-$total_paginas = ceil($total_clientes / $limite);
+$total_paginas = ceil($total_clientes / $lt);
 ?>
 
 <!DOCTYPE html>
@@ -86,17 +86,17 @@ $total_paginas = ceil($total_clientes / $limite);
         <tr>
             <td><?php echo $total_clientes; ?></td>
             <td><?php echo mysqli_num_rows($result); ?></td>
-            <td><?php echo max(0, $total_clientes - $pagina_atual * $limite); ?></td>
+            <td><?php echo max(0, $total_clientes - $pagina_atual * $lt); ?></td>
         </tr>
     </table>
     <table>
         <tr>
             <th>
-                <a href="<?php echo $nome_arquivo; ?>?listar=<?php echo $limite;
+                <a href="<?php echo $nome_arquivo; ?>?listar=<?php echo $lt;
                 ?>&pg=<?php echo max(1, $pagina_atual - 1); ?>"><<</a>
              </th>
             <th>Pg <?php echo $pagina_atual; ?> de <?php echo $total_paginas; ?></th>
-            <th><a href="<?php echo $nome_arquivo; ?>?listar=<?php echo $limite;
+            <th><a href="<?php echo $nome_arquivo; ?>?listar=<?php echo $lt;
              ?>&pg=<?php echo min($total_paginas, $pagina_atual + 1); ?>">>></a></th>
         </tr>
     </table>
