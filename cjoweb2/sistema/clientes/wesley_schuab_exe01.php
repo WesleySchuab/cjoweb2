@@ -6,10 +6,10 @@ include '../../central/fn/server.php';
 $nome_arquivo = "index.php";
 
 if (isset($_GET['listar']) && is_numeric($_GET['listar'])) {
-    $limite = (int)$_GET['listar'];
+    $lt = (int)$_GET['listar'];
 
     
-    $sql = "SELECT * FROM clientes LIMIT $limite";
+    $sql = "SELECT * FROM clientes LIMIT $lt";
 } else {
   
     $sql = "SELECT * FROM clientes";
@@ -22,7 +22,7 @@ $row_total = mysqli_fetch_assoc($result_total);
 $total_clientes = $row_total['total'];
 
 
-$clientes_restantes = $total_clientes - $limite;
+$clientes_restantes = $total_clientes - $lt;
 if ($clientes_restantes < 0) {
     $clientes_restantes = 0;
 }
@@ -106,7 +106,7 @@ if ($clientes_restantes < 0) {
     </tr>
     <tr>
         <td><?php echo $total_clientes; ?></td>
-        <td><?php echo $limite; ?></td>
+        <td><?php echo $lt; ?></td>
         <td><?php echo $clientes_restantes; ?></td>
     </tr>
 </table>
