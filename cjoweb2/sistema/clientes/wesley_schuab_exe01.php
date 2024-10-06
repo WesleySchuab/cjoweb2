@@ -1,47 +1,27 @@
 <?php
 session_start();
-// Incluir o arquivo de conexão com o banco de dados
+
 include '../../central/fn/server.php';
 
-$nome_arquivo = "index.php";// NOME DO ARQUIVO
-/*
-if (isset($_GET['listar']))
- {
-   // $filtros = $_GET['filtro'];
-    $listar = $_GET['listar'];
+$nome_arquivo = "index.php";
 
-    switch ($listar) 
-     {
-        case 'id'   : $sql = "SELECT * FROM clientes"; break;
-        case 'az'   : $sql = "SELECT * FROM clientes ORDER BY nome_completo"; break;
-        case 'za'   : $sql = "SELECT * FROM clientes ORDER BY nome_completo DESC"; break;
-        case 'idade': $sql = "SELECT * FROM clientes ORDER BY dt_nasc"; break;
-     }   
- }
-  else
-   {
-     $sql = "SELECT * FROM clientes";
-   }
-*/
-// Verifica se o parâmetro 'listar' foi enviado e é um número inteiro
 if (isset($_GET['listar']) && is_numeric($_GET['listar'])) {
     $limite = (int)$_GET['listar'];
 
-    // Consulta SQL com LIMIT para limitar o número de resultados
+    
     $sql = "SELECT * FROM clientes LIMIT $limite";
 } else {
-    // Se o parâmetro não for válido ou não for enviado, retorna todos os clientes
+  
     $sql = "SELECT * FROM clientes";
 }
 
-// Criar a consulta SQL para selecionar todos os clientes
 $result = mysqli_query($conexao, $sql);
 $sql_total = "SELECT COUNT(*) as total FROM clientes";
 $result_total = mysqli_query($conexao, $sql_total);
 $row_total = mysqli_fetch_assoc($result_total);
 $total_clientes = $row_total['total'];
 
-// Calcular os clientes restantes
+
 $clientes_restantes = $total_clientes - $limite;
 if ($clientes_restantes < 0) {
     $clientes_restantes = 0;
