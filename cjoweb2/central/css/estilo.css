@@ -3,9 +3,10 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            overflow-x: hidden; /* Remove a barra de rolagem horizontal */
         }
         .container {
-            width: 50%;
+            width: 75%;
             margin: 50px auto;
             background-color: #fff;
             padding: 20px;
@@ -19,6 +20,28 @@
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: fixed; /* Garante que a tabela respeite o tamanho da tela */
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    word-wrap: break-word; /* Permite que o texto quebre dentro da célula */
+}
+
+th, td {
+    min-width: 100px; /* Define um tamanho mínimo para evitar que a célula fique muito pequena */
+}
+
+th {
+    background-color: #f8f8f8;
+}
+
         
 .topnav {
   overflow: hidden;
@@ -48,6 +71,19 @@
 .topnav .icon {
   display: none;
 }
+
+.info-clientes table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.info-clientes td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
 
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {display: none;}

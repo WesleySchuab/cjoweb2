@@ -50,13 +50,14 @@ CREATE TABLE financas_tipos_pagamentos (
     status ENUM('0', '1') DEFAULT '1' 
 );
 
-CREATE TABLE financas_operacoes (
+CREATE TABLE IF NOT EXISTS  financas_operacoes (
     id_transacao INT AUTO_INCREMENT PRIMARY KEY,
     tipo_transacao ENUM('Pagar', 'Receber') DEFAULT NULL,  -- Define se é uma conta a pagar ou receber
-    id_tipo_pagamento INT,
-    id_cliente INT,
-	id_conta INT,
-    id_fornecedor INT,
+    id_tipo_pagamento INT DEFAULT NULL,
+    id_cliente INT DEFAULT NULL,
+	id_conta INT DEFAULT NULL,
+    id_fornecedor INT DEFAULT NULL,
+    id_fatura INT DEFAULT NULL,
     descricao VARCHAR(255),
     valor_fatura DECIMAL(10,2) DEFAULT NULL,
 	tx_juros DECIMAL(3,2) DEFAULT NULL,
@@ -65,3 +66,32 @@ CREATE TABLE financas_operacoes (
     data_pagto_recebimento DATE,
     status ENUM('Pendente', 'Pago', 'Recebido') DEFAULT 'Pendente'    
 ) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
+
+CREATE TABLE IF NOT EXISTS produtos (
+    id_produto INT AUTO_INCREMENT PRIMARY KEY,
+    id_fornecedor INT DEFAULT NULL,
+    id_usuario INT DEFAULT NULL,
+    codigo_barras VARCHAR(13) NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT DEFAULT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    status ENUM('ativo', 'inativo') DEFAULT 'ativo', 
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
+
+
+CREATE TABLE IF NOT EXISTS estoques (
+    id_estoque INT AUTO_INCREMENT PRIMARY KEY,
+    id_produto INT NOT NULL,
+    quantidade INT NOT NULL
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
+
+CREATE TABLE IF NOT EXISTS compras (
+    id_compra INT AUTO_INCREMENT PRIMARY KEY,
+    id_fatura INT NOT NULL,
+    id_produto INT NOT NULL,
+    quantidade INT NOT NULL,
+    preco_unitario DECIMAL(10, 2) NOT NULL,
+    data_compra TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
+

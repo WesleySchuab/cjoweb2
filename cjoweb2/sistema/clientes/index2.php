@@ -3,29 +3,26 @@ session_start();
 // Incluir o arquivo de conexão com o banco de dados
 include '../../central/fn/server.php';
 
+$nome_arquivo = "index.php";// NOME DO ARQUIVO
 
-/*
-filtrar por:
-Id
-AZ
-ZA
-Idade
-*/
-$filtro =  $_GET['filtro'];
+if (isset($_GET['filtro']))
+ {
+    $filtros = $_GET['filtro'];
 
-switch ($filtro) {
-    case 'id'; 
-        $sql = "SELECT * FROM clientes"; break;
-    case 'a-z'; 
-        $sql = "SELECT * FROM clientes ORDER BY nome_completo";break;
-    case 'z-a';
-         $sql = "SELECT * FROM clientes ORDER BY nome_completo DESC";break;
-    case 'idade';
-        $sql = "SELECT * FROM clientes ORDER BY dt_nasc";break;
-}
+    switch ($filtros) 
+     {
+        case 'id'   : $sql = "SELECT * FROM clientes"; break;
+        case 'az'   : $sql = "SELECT * FROM clientes ORDER BY nome_completo"; break;
+        case 'za'   : $sql = "SELECT * FROM clientes ORDER BY nome_completo DESC"; break;
+        case 'idade': $sql = "SELECT * FROM clientes ORDER BY dt_nasc"; break;
+     }   
+ }
+  else
+   {
+     $sql = "SELECT * FROM clientes";
+   }
 
 // Criar a consulta SQL para selecionar todos os clientes
-$sql = "SELECT * FROM clientes";
 $result = mysqli_query($conexao, $sql);
 ?>
 
@@ -41,6 +38,11 @@ $result = mysqli_query($conexao, $sql);
 <?php  echo $menu_links_clientes; ?>
     <div class="container">
         <h1>Lista de Clientes</h1>
+        <p>Ordernar por: 
+            <a href="<?php echo $nome_arquivo; ?>">ID</a> | 
+            <a href="<?php echo $nome_arquivo; ?>?filtro=az">A-Z</a> | 
+            <a href="<?php echo $nome_arquivo; ?>?filtro=za">Z-A</a> |
+        </p>
         <table>
             <thead>
                 <tr>
@@ -49,6 +51,7 @@ $result = mysqli_query($conexao, $sql);
                     <th>Nome Completo</th>
                     <th>Sexo</th>
                     <th>Data de Nascimento</th>
+                    <th>Idade</th>
                     <th>Email</th>
                     <th>Telefone</th>
                     <th>Ação</th>
@@ -60,12 +63,22 @@ $result = mysqli_query($conexao, $sql);
                 if (mysqli_num_rows($result) > 0) {
                     // Loop através de cada linha de resultado e exibi-la na tabela
                     while($row = mysqli_fetch_assoc($result)) {
+
+                        //Converte a data para o modelo pt-br
+                        $data_nasc = date("d/m/Y", strtotime($row['dt_nasc']));
+
+                        //Calcula a idade
+                        $data_nascimento = new DateTime($row['dt_nasc']);
+                        $hoje      = new DateTime();
+                        $idade     = $hoje->diff($data_nascimento)->y; //calcula a idade
+
                         echo "<tr>";
                         echo "<td>" . $row['id'] . "</td>";
                         echo "<td>" . $row['codigo'] . "</td>";
                         echo "<td>" . $row['nome_completo'] . "</td>";
                         echo "<td>" . $row['sexo'] . "</td>";
-                        echo "<td>" . $row['dt_nasc'] . "</td>";
+                        echo "<td>" . $data_nasc . "</td>";
+                        echo "<td>" . $idade . "</td>";
                         echo "<td>" . $row['email'] . "</td>";
                         echo "<td>" . $row['telefone'] . "</td>";
                         echo "<td>
