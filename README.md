@@ -79,3 +79,18 @@ coma base nessa tabela e a base do código abaixo como referencia de estrutura
 caminho do código que foi passado
 C:\wamp64\www\cjoweb2\sistema\clientes\index.php
 **agora faço todo layoult usando o bootstrap 5.3 
+nesse arquivo temos o exato comando usado na IA
+
+https://github.com/WesleySchuab/cjoweb2/blob/main/cjoweb2/0-Setup/Ia.txt
+
+O arquivo server armazenado no seguinte caminho 
+C:\wamp64\www\cjoweb2\central\fn\server.php
+aponta para o arquivo onde estão os menus 
+
+O arquivo menu no seguinte caminho 
+C:\wamp64\www\cjoweb2\central\fn\menu.php
+
+arquivo de menu
+https://github.com/WesleySchuab/cjoweb2/blob/main/cjoweb2/central/fn/menu.php
+
+Deve conter os menus 
