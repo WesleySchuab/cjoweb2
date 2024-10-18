@@ -60,7 +60,7 @@ http://localhost:8000/cjoweb2/sistema/clientes/wesley_schuab_exe02.php
 # Como gerar o Crud com base no banco usando IA
 
 As quebras de linha sem enviar o código deve ser feitas usando o o atalho  shift enter 
-
+*** Executa o script do banco para criar a tabela
 **cola a tabela do banco 
 
 CREATE TABLE IF NOT EXISTS fornecedores (
