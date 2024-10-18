@@ -8,6 +8,7 @@ O resultado ficara assim
 http://localhost:8000/cjoweb2/Central/fn/hashPass.php?psw=abc@1234
 uma vez criada a criptografia da senha na pagina de login deve ser usada a senha: abc@1234
 feito o login deve vir para a pagina: **http://localhost:8000/cjoweb2/Sistema/clientes/**
+Meu usuário foi atualizado para wesley@acme.com a senha permaneceu a mesma
 Que deverá exibir os clientes da seguinte forma
 ![image](https://github.com/user-attachments/assets/2446562b-6bd8-4fe8-975e-3746fe77595c)
 
@@ -55,3 +56,26 @@ http://localhost:8000/cjoweb2/sistema/clientes/nome_sobrenome_exe02.php
 
 como deve ficar
 http://localhost:8000/cjoweb2/sistema/clientes/wesley_schuab_exe02.php
+
+# Como gerar o Crud com base no banco usando IA
+
+As quebras de linha sem enviar o código deve ser feitas usando o o atalho  shift enter 
+
+**cola a tabela do banco 
+
+CREATE TABLE IF NOT EXISTS fornecedores (
+    id_fornecedor INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) DEFAULT NULL,
+    cnpj VARCHAR(18) DEFAULT NULL,
+    email VARCHAR(100),
+    telefone VARCHAR(15),
+    endereco TEXT,
+    descricao TEXT,
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE = InnoDB DEFAULT CHARSET=UTF8MB4;
+
+passo o novo comando
+coma base nessa tabela e a base do código abaixo como referencia de estrutura 
+caminho do código que foi passado
+C:\wamp64\www\cjoweb2\sistema\clientes\index.php
+**agora faço todo layoult usando o bootstrap 5.3 
