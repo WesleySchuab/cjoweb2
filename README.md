@@ -1,4 +1,7 @@
 # cjoweb2
+** Ia para auxiliar
+https://copilot.microsoft.com/chats/pTsvWkWUGMjZsD8fcNnVz
+
 foi criada a conexão com o banco usando o programa MySQL Workbench utilizando o arquivo script_banco.sql
 A primeira senha criada foi abc@1234
 a senha deve ser passada na pagina pelo metodo get que pega o que é passado na url 
