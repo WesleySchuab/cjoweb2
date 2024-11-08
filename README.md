@@ -97,3 +97,25 @@ arquivo de menu
 https://github.com/WesleySchuab/cjoweb2/blob/main/cjoweb2/central/fn/menu.php
 
 Deve conter os menus 
+
+### As paginas atualizar
+Estão recebendo o codido do que será alterado pelo metodo GET
+para passar esse parametro pelo metodo get usamos a URL
+
+### A sintaxe básica é: http://seusite.com/pagina.php?parametro1=valor1&parametro2=valor2
+?: Indica o início dos parâmetros.
+&: Separa os diferentes parâmetros.
+parametro: O nome do parâmetro.
+valor: O valor associado ao parâmetro.
+
+*** URL do site que vamos acessar
+http://localhost:8000/cjoweb2/Sistema/clientes/cliente_atualizar.php
+caracter que indica que será passado parametro 
+?
+Variavel que recebe o código 
+codigo
+
+Sinal de atribuição 
+=
+Código do cliente que queremos alterar
+DRTWR-34XT-D2GT5
