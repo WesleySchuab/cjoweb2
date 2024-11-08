@@ -114,6 +114,8 @@ caracter que indica que será passado parametro
 ?
 Variavel que recebe o código 
 codigo
+![image](https://github.com/user-attachments/assets/c1dd272d-d3d5-4132-b940-545d2abcc9da)
+
 
 Sinal de atribuição 
 =
